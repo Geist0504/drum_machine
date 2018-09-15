@@ -1,5 +1,5 @@
 import React from 'react'
-import css from './css/main.css'
+import scss from './css/main.scss'
 
 
 class Application extends React.Component {
