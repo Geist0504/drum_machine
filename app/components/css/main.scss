@@ -1,7 +1,43 @@
-$headings-color: gray;
+$main-color: gray;
+$accent-color: red;
+$sqaure-size: 100px;
 
 body {
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
-  background-color: $headings-color;
+  background-color: $main-color;
   overflow: auto;
+}
+
+#drum-machine{
+	display: flex;
+	flex-flow: row;
+	border: solid $accent-color 3px;
+	background-color: lighten($main-color, 20%);
+	width: 60%;
+	height: 20em;
+	margin-left: 20%;
+	margin-top: 20%;
+	margin-bottom: 20%;
+	flex: 0 0 50%
+}
+
+#drum-buttons{
+	height: 100%;
+	flex: 50%;
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.drum-button{
+	background-color: $main-color;
+	display: flex;
+	border-radius: 4px;
+	box-shadow: 5px 5px 3px black;
+	width: $sqaure-size;
+	height: $sqaure-size;
+	text-align: center;
+}
+
+#machine-buttons{
+	flex: 0 0 50%;
 }
