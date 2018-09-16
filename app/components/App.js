@@ -12,14 +12,16 @@ class DrumButton extends React.Component {
   }
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress)
+    document.addEventListener('keyup', this.handleKeyPress)
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyPress)
+    document.addEventListener('keyup', this.handleKeyPress)
   }
   handleKeyPress(target) {
 	    if (target.key === this.props.press | target.key === this.props.press.toLowerCase()) {
 	        console.log(target.key)
-	        this.setState({pressed: true})
+	        this.setState({pressed: !this.state.pressed})
 	        console.log(this.state)
 	    }
   }
