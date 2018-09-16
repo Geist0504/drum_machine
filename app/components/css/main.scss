@@ -47,12 +47,12 @@ body {
 
 .drum-button:active{
 	box-shadow: 0 3px 0 black;
-	background-color: darken($main-color, 10%);
+	background-color: darken($accent-color, 10%);
 }
 
 .drum-button-pushed{
 	box-shadow: 0 3px 0 black;
-	background-color: darken($main-color, 10%);
+	background-color: darken($accent-color, 10%);
 }
 
 .drum-button p{
@@ -63,5 +63,20 @@ body {
 }
 
 #machine-buttons{
+	display: flex;
+	flex-flow: row wrap;
 	flex: 0 0 50%;
+	align-items: center;
+	justify-content: center;
+}
+
+#display{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 70%;
+	height: 15%;
+	vertical-align: center;
+	text-align: center;
+	background: $main-color;
 }

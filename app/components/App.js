@@ -60,6 +60,11 @@ const bankTwo = [ {
   url: 'https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3'
 }]
 
+function updateDisplay(text) {
+	console.log(text)
+  this.setState({text:text})
+}
+
 class DrumButton extends React.Component {
   constructor(props) {
     super(props)
@@ -79,6 +84,7 @@ class DrumButton extends React.Component {
     document.addEventListener('keyup', this.handleKeyPress)
   }
   playAudio() {
+  	updateDisplay(this.props.audioName)
   	this.audio.play()
   }
   handleKeyPress(target) {
@@ -90,7 +96,7 @@ class DrumButton extends React.Component {
   render() {
   	return (
   		<button className={this.state.pressed ? 'drum-button drum-button-pushed' : 'drum-button'}
-  		onClick = {this.playAudio}><p>{this.props.press}</p></button>
+  		onClick = {this.playAudio} id={this.props.press}><p>{this.props.press}</p></button>
   		)
   }
 }
@@ -100,15 +106,9 @@ class DrumButtons extends React.Component {
     super(props)
     this.state = {}
   }
-  render() {
-  	  	const keys = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
-  	  	let bank = this.props.kit.slice()
-  	  	bank.map((obj, i) => {
-  	  		obj.keyEvent = keys[i];
-  	  		return obj
-  	  	})
-    	const buttons = bank.map((obj) => (<DrumButton press = {obj.keyEvent}
-    		audio = {obj.url} id = {obj.id} />))
+  render() {  		  	
+    	const buttons = this.props.bank.map((obj) => (<DrumButton press = {obj.keyEvent}
+    		audio = {obj.url} id = {obj.keyEvent} audioName = {obj.id} />))
   	return (
   		<div id='drum-buttons'>{buttons }</div>
   		)
@@ -118,11 +118,16 @@ class DrumButtons extends React.Component {
 class MachineButtons extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+    	text: ''
+    }
+    updateDisplay = updateDisplay.bind(this)
   }
   render() {
   	return (
-  		<div id='machine-buttons'></div>
+  		<div id='machine-buttons'>
+  		  <div id='display'><p>{this.state.text}</p></div>
+  		</div>
   		)
   }
 }
@@ -135,8 +140,14 @@ class Application extends React.Component {
     }
   }
   render() {
+  	const keys = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
+  	let bank = this.state.drumKit.slice()
+  	bank.map((obj, i) => {
+  	  		obj.keyEvent = keys[i];
+  	  		return obj
+  	  	})
   	return (<div id='drum-machine'>
-  		<DrumButtons kit = {this.state.drumKit}/>
+  		<DrumButtons bank = {bank}/>
   		<MachineButtons />
   		</div>)
   }
