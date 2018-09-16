@@ -40,13 +40,24 @@ body {
 	height: calc(100% * (1/3) - 30px - 1px);
 	align-items: center;
 	justify-content: center;
+	border: none;
+}
+
+.drum-button:active{
+	box-shadow: 0 3px 0 black;
+	background-color: darken($main-color, 10%);
+}
+
+.drum-button-pushed{
+	box-shadow: 0 3px 0 black;
+	background-color: darken($main-color, 10%);
 }
 
 .drum-button p{
 	text-align: center;
 	vertical-align: middle;
 	width: 100%;
-	font-size: 2em;
+	font-size: 2.5em;
 }
 
 #machine-buttons{
