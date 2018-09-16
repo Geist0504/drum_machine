@@ -23,7 +23,6 @@ class DrumButtons extends React.Component{
   render(){
   	  	const keys = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
     	const buttons = keys.map((key) => <DrumButton press = {key} />)
-    	console.log(buttons)
   	return(
   		<div id='drum-buttons'>{buttons }</div>
   		)
