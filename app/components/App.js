@@ -1,5 +1,7 @@
 import React from 'react'
+import Switch from 'react-toggle-switch'
 import scss from './css/main.scss'
+
 
 const bankOne = [{
   id: 'Heater-1',
@@ -119,13 +121,22 @@ class MachineButtons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-    	text: ''
+    	text: '',
+    	powered: true
     }
     updateDisplay = updateDisplay.bind(this)
+    this.toggleSwitch = this.toggleSwitch.bind(this)
   }
+  toggleSwitch() {
+    this.setState({
+      powered: !this.state.powered
+    })
+  }
+
   render() {
   	return (
   		<div id='machine-buttons'>
+  		 <Switch onClick={this.toggleSwitch} on={this.state.powered}/>
   		  <div id='display'><p>{this.state.text}</p></div>
   		</div>
   		)

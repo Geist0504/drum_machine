@@ -1,6 +1,7 @@
 $main-color: gray;
 $accent-color: red;
 $sqaure-size: 100px;
+@import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css'; 
 
 body {
   font-family: 'Source Sans Pro', Helvetica, sans-serif;
@@ -64,7 +65,7 @@ body {
 
 #machine-buttons{
 	display: flex;
-	flex-flow: row wrap;
+	flex-flow: column wrap;
 	flex: 0 0 50%;
 	align-items: center;
 	justify-content: center;
