@@ -1,5 +1,5 @@
 $main-color: gray;
-$accent-color: red;
+$accent-color: #006400;
 $sqaure-size: 100px;
 @import '../../../node_modules/react-toggle-switch/dist/css/switch.min.css'; 
 
@@ -80,4 +80,23 @@ body {
 	vertical-align: center;
 	text-align: center;
 	background: $main-color;
+}
+
+.switch{
+	background: black;
+	height: 13px;
+	width: 40px;
+}
+
+.switch-toggle{
+	height: 10px;
+	width: 13px;
+}
+
+.switch.on .switch-toggle {
+    left: 25px;
+}
+
+.switch.on{
+	background: $accent-color;
 }
