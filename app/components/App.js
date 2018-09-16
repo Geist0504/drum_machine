@@ -63,7 +63,6 @@ const bankTwo = [ {
 }]
 
 function updateDisplay(text) {
-	console.log(text)
   this.setState({text:text})
 }
 
@@ -71,11 +70,16 @@ class DrumButton extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-    	pressed: false
+    	pressed: false,
+    	audio: new Audio(this.props.audio)
     }
     this.handleKeyPress = this.handleKeyPress.bind(this)
     this.playAudio = this.playAudio.bind(this)
-    this.audio = new Audio(this.props.audio)
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      audio: new Audio(nextProps.audio)
+    })
   }
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyPress)
@@ -87,7 +91,7 @@ class DrumButton extends React.Component {
   }
   playAudio() {
   	updateDisplay(this.props.audioName)
-  	this.audio.play()
+  	this.state.audio.play()
   }
   handleKeyPress(target) {
 	    if (target.key === this.props.press | target.key === this.props.press.toLowerCase()) {
@@ -136,8 +140,11 @@ class MachineButtons extends React.Component {
   render() {
   	return (
   		<div id='machine-buttons'>
+      <h2>Power</h2>
   		 <Switch onClick={this.toggleSwitch} on={this.state.powered}/>
   		  <div id='display'><p>{this.state.text}</p></div>
+        <h2>Toggle Drum Kit</h2>
+  		  <Switch onClick={this.props.toggleBank} on={this.state.powered}/>
   		</div>
   		)
   }
@@ -149,6 +156,18 @@ class Application extends React.Component {
     this.state = {
     	drumKit: bankOne
     }
+    this.toggleBank = this.toggleBank.bind(this)
+  }
+  toggleBank() {
+  	if (this.state.drumKit == bankOne) {
+  	 this.setState({
+  	 	drumKit: bankTwo
+  	 })
+  	} else {
+  		this.setState({
+  			drumKit: bankOne
+  		})
+  	}
   }
   render() {
   	const keys = ['Q', 'W', 'E', 'A', 'S', 'D', 'Z', 'X', 'C']
@@ -159,7 +178,7 @@ class Application extends React.Component {
   	  	})
   	return (<div id='drum-machine'>
   		<DrumButtons bank = {bank}/>
-  		<MachineButtons />
+  		<MachineButtons toggleBank={this.toggleBank}/>
   		</div>)
   }
 }
