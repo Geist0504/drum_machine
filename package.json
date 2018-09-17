@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "deploy": "gh-pages -d build"
   },
   "author": "Andrew Gallin",
   "license": "ISC",
+  "homepage": "https://geist0504.github.io/drum_machine",
   "dependencies": {
+    "gh-pages": "^2.0.0",
     "react": "^16.5.1",
     "react-dom": "^16.5.1"
   },

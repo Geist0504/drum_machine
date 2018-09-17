@@ -2,7 +2,6 @@ import React from 'react'
 import Switch from 'react-toggle-switch'
 import scss from './css/main.scss'
 
-
 const bankOne = [{
   id: 'Heater-1',
   url: 'https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3'
@@ -32,7 +31,6 @@ const bankOne = [{
   url: 'https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3'
 }
 ]
-
 const bankTwo = [ {
   id: 'Chord-1',
   url: 'https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3'
@@ -126,25 +124,38 @@ class MachineButtons extends React.Component {
     super(props)
     this.state = {
     	text: '',
-    	powered: true
+    	powered: true,
+      bank: false
     }
     updateDisplay = updateDisplay.bind(this)
     this.toggleSwitch = this.toggleSwitch.bind(this)
+    this.toggleBank = this.toggleBank.bind(this)
   }
   toggleSwitch() {
     this.setState({
       powered: !this.state.powered
     })
   }
+  toggleBank() {
+    this.props.toggleBank()
+    if (this.state.bank) {
+      updateDisplay('Heater Kit')
+    } else {
+      updateDisplay('Smooth Piano Kit')
+    }
+    this.setState({
+      bank: !this.state.bank
+    })
+  }
 
   render() {
   	return (
   		<div id='machine-buttons'>
-      <h2>Power</h2>
+        <h2>Power</h2>
   		 <Switch onClick={this.toggleSwitch} on={this.state.powered}/>
   		  <div id='display'><p>{this.state.text}</p></div>
         <h2>Toggle Drum Kit</h2>
-  		  <Switch onClick={this.props.toggleBank} on={this.state.powered}/>
+  		  <Switch onClick={this.toggleBank} on={this.state.bank}/>
   		</div>
   		)
   }
