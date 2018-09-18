@@ -21,15 +21,18 @@ h2{
 	width: 60%;
 	height: 24em;
 	margin-left: 20%;
+	margin-right: 20%;
 	margin-top: 20%;
 	margin-bottom: 20%;
-	flex: 0 0 50%
+	flex: 0 0 50%;
+	min-width: 440px;
 }
 
 #drum-buttons{
 	height: 100%;
 	flex: 50%;
 	display: flex;
+	min-width: 220px;
 	flex-flow: row wrap;
 	align-content: center;
 	justify-content: center;
@@ -73,6 +76,7 @@ h2{
 	flex: 0 0 50%;
 	align-items: center;
 	justify-content: center;
+	min-width: 220px;
 }
 
 #display{
